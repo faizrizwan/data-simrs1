@@ -71,7 +71,7 @@ export default function OutputData() {
               marginTop: 4
               
             }}>
-              Monitoring Pengambilan Barang & Kendala
+              Monitoring Barang & Kendala
             </div>
           </div>
         </div>
