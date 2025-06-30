@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
-
-
+import { db } from '../firebase/index'; // Pastikan path sesuai file konfigurasi firebase Anda
 
 export default function OutputData() {
   const [data, setData] = useState([]);
@@ -26,7 +24,6 @@ export default function OutputData() {
     }}>
       <div style={{
         maxWidth: 1100,
-        marginTop: 0,
         margin: '40px auto',
         background: '#fff',
         borderRadius: 18,
@@ -69,7 +66,6 @@ export default function OutputData() {
               fontWeight: 500,
               fontSize: 16,
               marginTop: 4
-              
             }}>
               Monitoring Pengambilan Barang & Kendala
             </div>
