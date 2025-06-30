@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+h1 {
+    text-align: center;
+    color: #222;
+    font-family: 'Playfair Display', 'Lora', 'Merriweather', serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-family: 'Lato', 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
