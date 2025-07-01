@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
-
-
 
 export default function OutputData() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const ambilData = async () => {
-      const snapshot = await getDocs(collection(db, 'pengambilan'));
+    const unsubscribe = onSnapshot(collection(db, 'pengambilan'), (snapshot) => {
       const hasil = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setData(hasil);
-    };
-    ambilData();
+    });
+
+    // Bersihkan listener saat komponen di-unmount
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -69,7 +68,6 @@ export default function OutputData() {
               fontWeight: 500,
               fontSize: 16,
               marginTop: 4
-              
             }}>
               Monitoring Barang & Kendala
             </div>
