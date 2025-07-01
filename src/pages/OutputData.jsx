@@ -10,50 +10,53 @@ export default function OutputData() {
       const hasil = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setData(hasil);
     });
+
+    // Bersihkan listener saat komponen di-unmount
     return () => unsubscribe();
   }, []);
 
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%)',
+      background: 'linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%)',
       fontFamily: 'Segoe UI, Arial, sans-serif',
-      padding: 24,
+      padding: 40,
       margin: 0
     }}>
       <div style={{
         maxWidth: 1100,
-        margin: '32px auto',
+        marginTop: 0,
+        margin: '40px auto',
         background: '#fff',
-        borderRadius: 20,
-        boxShadow: '0 6px 32px rgba(99,102,241,0.10)',
-        padding: 28,
+        borderRadius: 18,
+        boxShadow: '0 8px 32px rgba(99,102,241,0.12)',
+        padding: 36,
         border: '1px solid #e0e7ff'
       }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 18,
-          marginBottom: 28
+          gap: 16,
+          marginBottom: 32
         }}>
           <div style={{
             background: 'linear-gradient(135deg, #6366f1 0%, #818cf8 100%)',
             borderRadius: '50%',
-            width: 54,
-            height: 54,
+            width: 56,
+            height: 56,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(99,102,241,0.13)'
+            boxShadow: '0 2px 8px rgba(99,102,241,0.18)'
           }}>
-            <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24">
+            <svg width="32" height="32" fill="#fff" viewBox="0 0 24 24">
               <path d="M12 12c2.7 0 8 1.34 8 4v2H4v-2c0-2.66 5.3-4 8-4zm0-2a4 4 0 100-8 4 4 0 000 8z"/>
             </svg>
           </div>
           <div>
             <h1 style={{
               margin: 0,
-              fontSize: 30,
+              fontSize: 32,
               fontWeight: 800,
               color: '#3730a3',
               letterSpacing: 1
@@ -70,21 +73,18 @@ export default function OutputData() {
             </div>
           </div>
         </div>
-        <div style={{
-          overflowX: 'auto',
-          borderRadius: 12,
-          boxShadow: '0 1px 6px rgba(99,102,241,0.06)'
-        }}>
+        <div style={{ overflowX: 'auto' }}>
           <table style={{
             width: '100%',
             borderCollapse: 'separate',
             borderSpacing: 0,
-            background: 'linear-gradient(135deg, #f3f4f6 0%, #f8fafc 100%)',
+            background: 'linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%)',
             borderRadius: 12,
-            overflow: 'hidden'
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(55,48,163,0.05)'
           }}>
             <thead>
-              <tr>
+              <tr style={{ background: '#6366f1', color: '#fff' }}>
                 <th style={thStyle}>No</th>
                 <th style={thStyle}>Tanggal</th>
                 <th style={thStyle}>Diambil Oleh</th>
@@ -136,16 +136,15 @@ export default function OutputData() {
                       <span style={{
                         display: 'inline-block',
                         minWidth: 80,
-                        padding: '7px 18px',
-                        borderRadius: 18,
+                        padding: '6px 16px',
+                        borderRadius: 16,
                         background: row.status === 'Selesai'
                           ? 'linear-gradient(90deg, #bbf7d0 0%, #22d3ee 100%)'
                           : 'linear-gradient(90deg, #fef9c3 0%, #fca5a5 100%)',
                         color: row.status === 'Selesai' ? '#15803d' : '#b45309',
                         fontWeight: 700,
                         fontSize: 14,
-                        letterSpacing: 0.5,
-                        boxShadow: '0 1px 4px rgba(34,211,238,0.07)'
+                        letterSpacing: 0.5
                       }}>
                         {row.status}
                       </span>
@@ -156,79 +155,24 @@ export default function OutputData() {
             </tbody>
           </table>
         </div>
-        <div style={{
-          marginTop: 18,
-          textAlign: 'center',
-          color: '#64748b',
-          fontSize: 13
-        }}>
-          &copy; {new Date().getFullYear()} IT Support Monitoring
-        </div>
       </div>
-      {/* Responsive style */}
-      <style>{`
-        @media (max-width: 700px) {
-          table, thead, tbody, th, td, tr {
-            display: block;
-          }
-          thead tr {
-            display: none;
-          }
-          tbody tr {
-            margin-bottom: 18px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(99,102,241,0.07);
-            background: #fff !important;
-          }
-          td {
-            text-align: left !important;
-            padding-left: 40% !important;
-            position: relative;
-            min-height: 40px;
-            border-bottom: none !important;
-            border-top: 1px solid #e5e7eb;
-          }
-          td:before {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 38%;
-            white-space: nowrap;
-            font-weight: 700;
-            color: #6366f1;
-            font-size: 14px;
-          }
-          td:nth-of-type(1):before { content: "No"; }
-          td:nth-of-type(2):before { content: "Tanggal"; }
-          td:nth-of-type(3):before { content: "Diambil Oleh"; }
-          td:nth-of-type(4):before { content: "Kode Barang"; }
-          td:nth-of-type(5):before { content: "Jenis"; }
-          td:nth-of-type(6):before { content: "Kendala"; }
-          td:nth-of-type(7):before { content: "Bagian"; }
-          td:nth-of-type(8):before { content: "Keterangan"; }
-          td:nth-of-type(9):before { content: "Status"; }
-        }
-      `}</style>
     </div>
   );
 }
 
 const thStyle = {
-  padding: '15px 8px',
+  padding: '16px 10px',
   fontWeight: 700,
-  fontSize: 16,
+  fontSize: 17,
   borderBottom: '2px solid #e0e7ff',
   textAlign: 'center',
   letterSpacing: 0.5,
   background: 'linear-gradient(90deg, #6366f1 0%, #818cf8 100%)',
-  color: '#fff',
-  borderTopLeftRadius: 12,
-  borderTopRightRadius: 12
+  color: '#fff'
 };
 
 const tdStyle = {
-  padding: '13px 8px',
+  padding: '14px 8px',
   fontSize: 15,
   borderBottom: '1px solid #e5e7eb',
   textAlign: 'center',
